@@ -103,4 +103,7 @@ setup_staticlib_project(
         LIBRARIES ${LIBS}
 )
 
+# Smaller 3x3 NCC window: better for sparse event images (default is 5x5)
+target_compile_definitions(${MODULE_NAME} PRIVATE SOF_USE_SMALLER_NCC)
+
 add_subdirectory(test)

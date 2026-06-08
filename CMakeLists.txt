@@ -31,7 +31,7 @@ endif()
 # We want to do this so that all executable are in the same place and we can copy the dlls to that place
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
-set(CUVSLAM_TOOLS_PYENV ${CMAKE_SOURCE_DIR}/.venv CACHE PATH "Path to python virtual env for tools")
+set(CUVSLAM_TOOLS_PYENV ${CMAKE_SOURCE_DIR}/vo_fusion CACHE PATH "Path to python virtual env for tools")
 set(CUVSLAM_DATASETS $ENV{HOME}/datasets CACHE PATH "Path to image datasets folder")
 set(CUVSLAM_OUTPUT ${CMAKE_BINARY_DIR}/output CACHE PATH "Path to output folder")
 set(CUDAToolkit_ROOT /usr/local/cuda CACHE PATH "Path to installed CUDA toolkit")

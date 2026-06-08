@@ -30,8 +30,8 @@
 namespace cuvslam::sof {
 
 struct Settings {
-  // number of tracks for left selection
-  int32_t num_desired_tracks = 450;
+  // number of tracks for left selection (default 450; reduced to 150 for sparse event images)
+  int32_t num_desired_tracks = 200;
 
   // left camera border to ignore in pixels
   int32_t border_top = 0;

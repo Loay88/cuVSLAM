@@ -27,6 +27,10 @@ const size_t FAILED_ACTIVE_TRACK_COUNT = 20;
 
 const float RANSAC_ACCURACY_THRESHOLD = 0.002f;
 
+// NCC thresholds: lowered from 0.80/0.85 to improve tracking on sparse event images
+static constexpr float NCC_PRIMARY_THRESHOLD = 0.65f;
+static constexpr float NCC_RETRACK_THRESHOLD = 0.70f;
+
 MonoSOFGPU::MonoSOFGPU(CameraId cam_id, const camera::ICameraModel &intrinsics, std::unique_ptr<ISelector> selector,
                        FeaturePredictorPtr feature_predictor, const Settings &sof_settings)
     : MonoSOFBase(cam_id, std::move(selector), feature_predictor),
@@ -60,8 +64,8 @@ void MonoSOFGPU::launch(ImageContextPtr curr_image, const ImageContextPtr &prev_
     data.track_status = retrackdata.track_status = false;
     data.search_radius_px = retrackdata.search_radius_px = max_search_radius;
 
-    data.ncc_threshold = 0.8f;
-    retrackdata.ncc_threshold = 0.85f;
+    data.ncc_threshold = NCC_PRIMARY_THRESHOLD;
+    retrackdata.ncc_threshold = NCC_RETRACK_THRESHOLD;
   }
 
   tracks_data.copy_top_n(GPUCopyDirection::ToGPU, n, stream.get_stream());
